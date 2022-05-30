@@ -1,0 +1,45 @@
+import turtle, random
+# Screen
+Screen = turtle.Screen()
+Screen.bgcolor("pink")
+# Dice
+Dice = [1, 2, 3, 4, 5, 6]
+# Turtles
+Tom = turtle.Turtle()
+Sam = Tom.clone()
+FinishLine = Tom.clone()
+# Colors
+Tom.color("blue")
+Sam.color("red")
+FinishLine.ht()
+# Pen up
+Tom.penup()
+Sam.penup()
+FinishLine.penup()
+# Position
+Tom.goto(-300, 200)
+Sam.goto(-300, -200)
+FinishLine.goto(300, -300)
+# Finish Line
+FinishLine.pendown()
+FinishLine.left(90)
+FinishLine.forward(600)
+FinishLine.write("Finish !", font=24)
+# Get ready set go!
+Tom.pendown()
+Sam.pendown()
+while Tom.pos() <= (300, 300) or Sam.pos() <= (300, -300):
+    Tom.forward(random.choice(Dice))
+    Sam.forward(random.choice(Dice))
+    if Tom.pos() >= (300, 300):
+        Tom.penup()
+        Tom.goto(0, 0)
+        Tom.write("BLUE WINS!", font=48)
+        break
+    if Sam.pos() >= (300, -300): 
+        Sam.penup()
+        Sam.goto(0, 0)
+        Sam.write("RED WINS!", font=48)
+        break
+
+turtle.done()
