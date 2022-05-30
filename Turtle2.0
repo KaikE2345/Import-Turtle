@@ -1,0 +1,29 @@
+import turtle, random
+# Dice
+Dice = [2, 4, 6, 8, 10, 12]
+# Screen
+Screen = turtle.Screen()
+Screen.bgcolor("black")
+# Starting Position
+x, y = -300, 300
+# Players
+ListOfTurtles = [turtle.Turtle(), turtle.Turtle(), turtle.Turtle(), turtle.Turtle(), turtle.Turtle(), turtle.Turtle(), turtle.Turtle(), turtle.Turtle(), turtle.Turtle(), turtle.Turtle(), turtle.Turtle(), turtle.Turtle(), turtle.Turtle(), turtle.Turtle()]
+ColorsOfTurtles = ["white", "red", "lime", "blue", "yellow", "cyan", "magenta", "silver", "maroon", "green", "purple", "teal", "navy"]
+yCoord = []
+ListOfTurtles[len(ListOfTurtles) - 1].ht(), ListOfTurtles[len(ListOfTurtles) - 1].penup(), ListOfTurtles[len(ListOfTurtles) - 1].color("brown")
+# Starting Lane
+for Turtle in range(0, len(ListOfTurtles) - 1): 
+    ListOfTurtles[Turtle].speed(0), ListOfTurtles[Turtle].penup(), ListOfTurtles[Turtle].goto(x, y), ListOfTurtles[Turtle].color(ColorsOfTurtles[Turtle])
+    yCoord.append(y)
+    y -= 50
+ListOfTurtles[len(ListOfTurtles) - 1].goto(300, -300), ListOfTurtles[len(ListOfTurtles) - 1].pendown(), ListOfTurtles[len(ListOfTurtles) - 1].lt(90), ListOfTurtles[len(ListOfTurtles) - 1].forward(600), ListOfTurtles[len(ListOfTurtles) - 1].write("Finish Line", font=24)
+while True:
+    for Turtle in range(0, len(ListOfTurtles) - 1):
+        ListOfTurtles[Turtle].forward(random.choice(Dice))
+        if ListOfTurtles[Turtle].pos() >= (300, yCoord[Turtle]):
+            Turtle = ListOfTurtles.index(ListOfTurtles[Turtle])
+            break
+    if ListOfTurtles[Turtle].pos() >= (300, yCoord[Turtle]): break
+ListOfTurtles[Turtle].goto(0,0)
+ListOfTurtles[Turtle].write("I WIN!", font=64)
+turtle.done()
